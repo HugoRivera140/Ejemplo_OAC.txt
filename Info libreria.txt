@@ -1,0 +1,35 @@
+Pasos para ensamblar con NASM:
+
+Comando para ensamblar: nasm -f elf <archivo.asm>
+Comando para enlazar: ld -m elf_i386 <archivos.o> -o <output_file>
+
+Rutina: clrscr
+Parametros:
+;    Entrada:  ninguno
+;    Salida:   ninguno
+
+Rutina: gotoxy
+Parametros:
+;    Entrada:  BH posicion  x (columna)
+;              BL posicion  y (renglon)
+;    Salida:   ninguno
+
+Rutina: putchar
+Parametros:
+;    Entrada:  AL contiene el caracter a desplegar
+;    Salida:
+
+Rutina: puts
+Parametros:
+;     Entrada:  edx  contiene el aputador a la cadena a imprimir
+;      Salida:  ninguno
+
+Rutina: getche
+Parametros:
+;    Entrada:
+;    Salida:   AL contiene el caracter tecleado
+
+Rutina: getch
+Parametros:
+;    Entrada:
+;    Salida:   AL contiene el caracter tecleado
