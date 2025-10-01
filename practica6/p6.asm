@@ -4,14 +4,17 @@ section .text
     global _start:
 
 _start:
+    ;=============== Imprimir mensaje ===============
     MOV EDX, msg        ;Se pone la dirección de msg en EDX
     CALL newputs        ;Se imprime el mensaje ubicado en EDX (msg)
 
+    ;=============== Capturar cadena ===============
     MOV EDI, 0          ;Reinicio el valor de EDI
     MOV EBX, cad        ;Se pone la dirección de cad en EBX
     CALL capturar       ;Se llama capturar para poner caracteres en cad
     CALL salto
 
+    ;=============== Convertir en mayusculas ===============
     MOV EDI, 0          ;Se reinicia EDI
     MOV EBX, cad        ;La dirección de la cadena se coloca en EBX
     CALL convertirM     ;Se llama para convertir a mayúsculas
@@ -20,7 +23,7 @@ _start:
     CALL newputs        ;Se llama newputs para imprimir la cadena
     CALL salto
 
-
+    ;=============== Contar vocales e imprimirlas ===============
     CALL contarV        ;Se llama a contar vocales donde debe existir una variable 'cad' con una cadena dentro
     MOV byte[EBX], '0'  ;Se pone el valor de 0 en EBX para evitar problemas con lo que haya antes
 
@@ -49,12 +52,12 @@ _start:
     CALL putchar        ;Se imprime lo que haya en 'a', lo cual es el número de veces que aparecio
     CALL salto
 
-
+    ;=============== Invertir cadena ===============
     MOV EDI, 0          ;Se reinician los valores de EDI y ESI
     MOV ESI, 0
     MOV EBX, cadN       ;En EBX se pone la direccion de la cadena nueva
 
-    ;Este capturar se hace diferente ya que ahora se quiere mantener el valor de EDI para trabajar en la etiqueta invertirC
+    ;Este capturar se hace diferente ya que ahora quiero mantener el valor de EDI para trabajar en la etiqueta invertirC
     capturarN:
         CALL getche             ;Se llama a getche el cual captura un caracter en AL y lo muestra 
         CMP AL, '*'             ;Se compara el caracter puesto para ver si no es el fin de cadena ('*')
@@ -119,6 +122,7 @@ salto:
   popad
   ret
 
+;=============== Convertir en mayusculas ===============
 ;EBX dirección de cadena a convertir
 convertirM:
     PUSHAD
@@ -134,6 +138,8 @@ convertirM:
         POPAD
         RET                     ;Se regresa a cuando se llamó la etiqueta
 
+
+;=============== Contar vocales en cadena ===============
 contarV:
     PUSHAD
 
@@ -225,7 +231,6 @@ section .data
 section .bss
     cad resb 256
     cadN resb 256
-    temp resb 256
 
     a resb 2
     e resb 2
