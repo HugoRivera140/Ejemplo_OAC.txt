@@ -118,12 +118,14 @@ _start:
             JMP mover
 
         finM:            
+            SUB AL, '0'
+            MOV EBX, carry
+            MOV byte[EBX], AL
+
             POP EDI
             POP AX
             MOV byte[EDX+7], AH
             MOV byte [EDX+8], '%'
-            
-            SUB byte[EBX], '0'
             MOV AH, byte[EBX]
             AND AH, 1
             SAHF
